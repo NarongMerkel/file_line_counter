@@ -37,3 +37,10 @@ The trade-off: because we never decode, blank and comment detection operate on b
 - Comment matching is a case-sensitive `startswith` on the line after stripping leading ASCII whitespace. `b"#"` matches `# hi` and `   # hi`, but a line like `x = 1 # note` is **not** skipped — the `#` is not at the start.
 - Blank detection strips ASCII whitespace (` \t\r\n\v\f`). Non-ASCII whitespace (e.g. U+00A0) is not treated as blank.
 - `skip_comment` and `skip_blank` are independent. To drop both, pass both.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
