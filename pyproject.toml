@@ -1,6 +1,6 @@
 [project]
 name = "file-line-counter"
-version = "0.1.1"
+version = "0.1.2"
 description = "Counts lines in a file without loading it entirely into memory, optionally skipping blank or comment lines."
 requires-python = ">=3.10"
 dependencies = []
